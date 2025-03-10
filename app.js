@@ -1,3 +1,4 @@
+
 //O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 let amigos = [];
 let amigosSorteados = [];
@@ -51,6 +52,9 @@ function sortearAmigo() {
     console.log(amigoSecretoEscolhidoFoi);
 
     adicionarNomeSorteadoNoResultado(amigoSecretoEscolhidoFoi)
+
+    // Chamar a função para falar o nome sorteado
+    falarNome(amigoSecretoEscolhidoFoi);
 }
 
 function adicionarNomeSorteadoNoResultado(nomeSorteado) {
@@ -76,6 +80,13 @@ function verificarSelistaDeAmigosEhValida(quantidadeDeAmigosInformados) {
     return true;
 }
 
-function sortearAmigosAindaNaoSorteados() {
-
+function falarNome(nome) {
+    if ('speechSynthesis' in window) {
+        let mensagem = new SpeechSynthesisUtterance(nome);
+        mensagem.lang = 'pt-BR'; // Define o idioma
+        mensagem.rate = 1; // Velocidade normal da fala
+        speechSynthesis.speak(mensagem);
+    } else {
+        alert("Seu navegador não suporta síntese de voz.");
+    }
 }
